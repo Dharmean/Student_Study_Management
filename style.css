@@ -1,0 +1,1013 @@
+:root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --ink: #111827;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --soft: #f9fafb;
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --ring: rgba(79, 70, 229, 0.25);
+    --success: #047857;
+    --success-bg: #ecfdf5;
+    --danger: #b91c1c;
+    --danger-bg: #fef2f2;
+    --radius: 16px;
+    --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    width: min(1180px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+:focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 2px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Header */
+.app-header {
+    color: #fff;
+    background: linear-gradient(120deg, #111827, #1f2937);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-block: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    border-radius: 13px;
+    background: var(--primary);
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.app-header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.app-header p {
+    color: #cbd5e1;
+    font-size: 13px;
+}
+
+.profile-form {
+    display: flex;
+    gap: 8px;
+}
+
+.profile-form input {
+    width: 170px;
+    height: 40px;
+    padding: 0 12px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9px;
+    font: inherit;
+    font-size: 13px;
+}
+
+.profile-form input::placeholder {
+    color: #cbd5e1;
+}
+
+/* Navigation */
+.app-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+}
+
+.app-nav a {
+    flex: 0 0 auto;
+    padding: 14px 14px 12px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.app-nav a:hover,
+.app-nav a.is-active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+/* Main */
+.app-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-block: 28px 64px;
+}
+
+section[id] {
+    scroll-margin-top: 80px;
+}
+
+/* Welcome */
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 28px;
+    background: linear-gradient(135deg, #ffffff 70%, #eef2ff);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.eyebrow {
+    margin-bottom: 6px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.welcome h2 {
+    font-size: clamp(24px, 3.6vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+}
+
+.wave {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.today {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Statistics */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.stat-card {
+    --accent: var(--primary);
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.stat-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: var(--accent);
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(16, 24, 40, 0.1);
+}
+
+.stat-courses { --accent: #4f46e5; }
+.stat-assignments { --accent: #0284c7; }
+.stat-tasks { --accent: #0f766e; }
+.stat-cgpa { --accent: #f59e0b; }
+
+.stat-label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    margin: 6px 0 2px;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-note {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Panels */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 20px;
+}
+
+.panel {
+    min-width: 0;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.panel-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.panel h2 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.panel-head .muted {
+    margin-top: 3px;
+}
+
+/* Forms */
+.add-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+}
+
+input {
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    padding: 0 14px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--ring);
+    outline: none;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-secondary {
+    background: var(--surface);
+    color: var(--primary);
+    border-color: #c7d2fe;
+}
+
+.btn-secondary:hover {
+    background: #eef2ff;
+}
+
+.btn-ghost-light {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-ghost-light:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.btn-text {
+    min-height: 32px;
+    padding: 0 8px;
+    color: var(--muted);
+    background: transparent;
+    font-size: 12px;
+}
+
+.btn-text:hover {
+    color: var(--primary);
+}
+
+.btn-text:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.btn-full {
+    grid-column: 1 / -1;
+}
+
+.form-feedback {
+    min-height: 18px;
+    margin: 8px 2px 4px;
+    color: var(--success);
+    font-size: 12px;
+}
+
+.form-feedback.is-error {
+    color: var(--danger);
+}
+
+.course-form {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    align-items: end;
+}
+
+.course-field:first-child {
+    grid-column: 1 / -1;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    padding: 0 40px 0 14px;
+    color: var(--ink);
+    background-color: var(--surface);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--ring);
+    outline: none;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* CGPA score sheet */
+.cgpa-sheet {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+}
+
+.cgpa-sheet-head {
+    margin-bottom: 14px;
+}
+
+.cgpa-sheet-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.cgpa-sheet-head .muted {
+    margin-top: 3px;
+}
+
+.cgpa-empty {
+    margin-top: 4px;
+}
+
+.cgpa-empty a {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.cgpa-table {
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.cgpa-table-head,
+.cgpa-row,
+.cgpa-table-foot {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) 52px 92px 86px 84px;
+    align-items: center;
+    gap: 10px;
+}
+
+.cgpa-table-head {
+    padding: 11px 14px;
+    color: var(--muted);
+    background: var(--soft);
+    border-bottom: 1px solid var(--line);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cgpa-table-head span:nth-child(2),
+.cgpa-table-head span:nth-child(4),
+.cgpa-table-foot span:nth-child(4) {
+    text-align: center;
+}
+
+.cgpa-table-head span:nth-child(5),
+.cgpa-table-foot span:nth-child(5) {
+    text-align: right;
+}
+
+.cgpa-list {
+    gap: 0;
+    margin: 0;
+}
+
+.cgpa-row {
+    padding: 11px 14px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+}
+
+.cgpa-row:last-child {
+    border-bottom: 0;
+}
+
+.cgpa-row:hover {
+    background: var(--soft);
+    border-color: var(--line);
+}
+
+.cgpa-course {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.cgpa-code {
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.cgpa-dept {
+    color: var(--muted);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.cgpa-unit,
+.cgpa-grade,
+.cgpa-points {
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+}
+
+.cgpa-unit {
+    color: var(--muted);
+    font-weight: 600;
+    text-align: center;
+}
+
+.cgpa-grade {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    min-width: 56px;
+    min-height: 28px;
+    padding: 0 8px;
+    color: var(--muted);
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.cgpa-grade[data-grade="A"],
+.cgpa-grade[data-grade="B"] {
+    color: var(--success);
+    background: var(--success-bg);
+    border-color: #a7f3d0;
+}
+
+.cgpa-grade[data-grade="C"],
+.cgpa-grade[data-grade="D"],
+.cgpa-grade[data-grade="E"] {
+    color: #92400e;
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.cgpa-grade[data-grade="F"] {
+    color: var(--danger);
+    background: var(--danger-bg);
+    border-color: #fecaca;
+}
+
+.cgpa-points {
+    color: var(--ink);
+    font-weight: 600;
+    text-align: right;
+}
+
+.cgpa-score-field {
+    min-width: 0;
+}
+
+.cgpa-score {
+    height: 38px;
+    padding: 0 8px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.cgpa-score[aria-invalid="true"] {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.18);
+}
+
+.cgpa-table-foot {
+    padding: 11px 14px;
+    color: var(--muted);
+    background: var(--soft);
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.cgpa-table-foot span:first-child {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cgpa-table-foot span:nth-child(5) {
+    color: var(--primary);
+    font-size: 14px;
+}
+
+/* Lists */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+    list-style: none;
+}
+
+.list-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 11px 12px 11px 14px;
+    background: var(--soft);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: background 0.18s ease, border-color 0.18s ease;
+    animation: rise 0.18s ease-out both;
+}
+
+.list-row:hover {
+    background: #f3f4f6;
+    border-color: var(--line);
+}
+
+.row-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+}
+
+.is-complete .row-text {
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+.row-actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 6px;
+}
+
+.btn-chip {
+    min-height: 30px;
+    padding: 0 10px;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btn-complete:hover {
+    color: var(--success);
+    background: var(--success-bg);
+    border-color: #a7f3d0;
+}
+
+.btn-danger:hover {
+    color: var(--danger);
+    background: var(--danger-bg);
+    border-color: #fecaca;
+}
+
+.course-row {
+    align-items: flex-start;
+}
+
+.course-row-main {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.course-row-title,
+.course-row-meta {
+    margin: 0;
+}
+
+.course-code {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    overflow-wrap: anywhere;
+}
+
+.course-dept {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.course-row-actions {
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.unit-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    padding: 0 10px;
+    color: var(--primary);
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.empty-state {
+    padding: 26px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 13px;
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+}
+
+/* CGPA summary */
+.cgpa-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 20px 22px;
+    background: linear-gradient(135deg, #eef2ff, #ffffff);
+    border: 1px solid #e0e7ff;
+    border-top: 3px solid var(--primary);
+    border-radius: 14px;
+}
+
+.cgpa-summary-main {
+    min-width: 0;
+}
+
+.cgpa-value {
+    margin-top: 4px;
+    color: var(--primary);
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+}
+
+.cgpa-meta {
+    color: var(--muted);
+    text-align: right;
+    font-size: 12px;
+}
+
+.cgpa-meta p + p {
+    margin-top: 3px;
+}
+
+.cgpa-meta strong {
+    color: var(--ink);
+    font-size: 14px;
+}
+
+.cgpa-meta .btn {
+    min-height: 36px;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.cgpa-class {
+    margin-top: 8px;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Footer */
+footer {
+    padding: 22px;
+    color: #cbd5e1;
+    background: #111827;
+    text-align: center;
+    font-size: 13px;
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (max-width: 980px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: calc(100% - 32px);
+    }
+
+    .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .welcome {
+        padding: 22px;
+    }
+
+    .add-form,
+    .course-form {
+        grid-template-columns: 1fr;
+    }
+
+    .course-field:first-child {
+        grid-column: auto;
+    }
+
+    .cgpa-table-head {
+        display: none;
+    }
+
+    .cgpa-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 12px;
+    }
+
+    .cgpa-course {
+        grid-column: 1 / -1;
+    }
+
+    .cgpa-unit,
+    .cgpa-score-field,
+    .cgpa-grade,
+    .cgpa-points {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        text-align: left;
+    }
+
+    .cgpa-unit::before,
+    .cgpa-score-field::before,
+    .cgpa-grade::before,
+    .cgpa-points::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .cgpa-grade {
+        justify-self: stretch;
+    }
+
+    .cgpa-table-foot {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px 12px;
+    }
+
+    .cgpa-table-foot span:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .cgpa-table-foot span:nth-child(2),
+    .cgpa-table-foot span:nth-child(3) {
+        display: none;
+    }
+
+    .cgpa-table-foot span:nth-child(4) {
+        text-align: left;
+    }
+
+    .cgpa-score {
+        width: 96px;
+    }
+
+    .cgpa-summary {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .cgpa-meta {
+        text-align: left;
+    }
+
+    .panel {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 420px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+
+    .cgpa-row {
+        grid-template-columns: 1fr;
+    }
+
+    .course-row-actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

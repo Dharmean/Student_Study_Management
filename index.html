@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register Elizade University courses, record scores and calculate CGPA in real time.">
+    <title>Student Study Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">S</span>
+                <div>
+                    <h1>Student Study Management</h1>
+                    <p>Plan your studies. Track your progress.</p>
+                </div>
+            </div>
+
+            <form id="profileForm" class="profile-form">
+                <label class="sr-only" for="nameInput">Your name</label>
+                <input id="nameInput" type="text" maxlength="40" placeholder="Your name" autocomplete="name">
+                <button id="setNameBtn" type="submit" class="btn btn-ghost-light">Set name</button>
+            </form>
+        </div>
+    </header>
+
+    <nav class="app-nav" aria-label="Main navigation">
+        <div class="container nav-inner">
+            <a href="#overview" class="is-active">Overview</a>
+            <a href="#courses">Courses</a>
+            <a href="#assignments">Assignments</a>
+            <a href="#tasks">Tasks</a>
+            <a href="#cgpa">CGPA</a>
+        </div>
+    </nav>
+
+    <main class="container app-main">
+
+        <section class="welcome" id="overview" aria-labelledby="welcomeTitle">
+            <div>
+                <p class="eyebrow">Your dashboard</p>
+                <h2 id="welcomeTitle">Welcome back, <span id="studentName">Student</span><span class="wave" aria-hidden="true">👋</span></h2>
+                <p class="muted">Everything you need to stay on top of your academic work.</p>
+            </div>
+            <p class="today" id="todayDate"></p>
+        </section>
+
+        <section class="stats" aria-label="Overview statistics">
+            <article class="stat-card stat-courses">
+                <p class="stat-label">Courses</p>
+                <p class="stat-value" id="courseCount">0</p>
+                <p class="stat-note">Registered this semester</p>
+            </article>
+
+            <article class="stat-card stat-assignments">
+                <p class="stat-label">Assignments</p>
+                <p class="stat-value" id="assignmentCount">0</p>
+                <p class="stat-note">Tracked in one place</p>
+            </article>
+
+            <article class="stat-card stat-tasks">
+                <p class="stat-label">Tasks</p>
+                <p class="stat-value" id="taskCount">0</p>
+                <p class="stat-note">On your to-do list</p>
+            </article>
+
+            <article class="stat-card stat-cgpa">
+                <p class="stat-label">CGPA</p>
+                <p class="stat-value" id="statCgpa">0.00</p>
+                <p class="stat-note">Elizade 5-point scale</p>
+            </article>
+        </section>
+
+        <div class="content-grid">
+
+            <section class="panel panel-cgpa" id="cgpa" aria-labelledby="cgpaTitle">
+                <div class="panel-head">
+                    <div>
+                        <h2 id="cgpaTitle">CGPA calculator</h2>
+                        <p class="muted">Enter a score (0–100) for each registered course. Grades and CGPA update instantly.</p>
+                    </div>
+                </div>
+
+                <div class="cgpa-summary">
+                    <div class="cgpa-summary-main">
+                        <p class="stat-label">Your CGPA</p>
+                        <p class="cgpa-value" id="cgpaResult">0.00</p>
+                        <p class="cgpa-class" id="cgpaClass">Add scores to see your classification</p>
+                    </div>
+                    <div class="cgpa-meta">
+                        <p><strong id="resultCount">0</strong> of <strong id="courseTotalCount">0</strong> courses scored</p>
+                        <p><strong id="totalCredits">0</strong> credit units graded</p>
+                        <button id="calculateCgpaBtn" type="button" class="btn btn-primary">Generate CGPA</button>
+                    </div>
+                </div>
+
+                <p class="form-feedback" id="cgpaMessage" role="status" aria-live="polite"></p>
+
+                <div class="cgpa-sheet">
+                    <div class="cgpa-sheet-head">
+                        <h3 class="cgpa-sheet-title">Score sheet</h3>
+                        <p class="muted">Enter each score from 0 to 100. Grade and quality points are calculated automatically.</p>
+                    </div>
+
+                    <p class="empty-state cgpa-empty" id="cgpaEmpty">
+                        No courses registered yet. <a href="#courses">Register courses</a> first.
+                    </p>
+
+                    <div class="cgpa-table" id="cgpaTable" hidden>
+                        <div class="cgpa-table-head" aria-hidden="true">
+                            <span>Course</span>
+                            <span>Unit</span>
+                            <span>Score</span>
+                            <span>Grade / GP</span>
+                            <span>Points</span>
+                        </div>
+                        <ul class="list cgpa-list" id="cgpaList"></ul>
+                        <div class="cgpa-table-foot" aria-hidden="true">
+                            <span>Graded courses</span>
+                            <span></span>
+                            <span></span>
+                            <span>Total points</span>
+                            <span id="totalPoints">0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel panel-tasks" id="tasks" aria-labelledby="tasksTitle">
+                <div class="panel-head">
+                    <div>
+                        <h2 id="tasksTitle">Recent tasks</h2>
+                        <p class="muted">Mark what you finish and clear it from your plate.</p>
+                    </div>
+                    <button id="clearCompletedBtn" type="button" class="btn btn-text">Clear done</button>
+                </div>
+
+                <form id="taskForm" class="add-form">
+                    <label class="sr-only" for="taskInput">New task</label>
+                    <input id="taskInput" type="text" maxlength="80" placeholder="e.g. Review lecture notes" autocomplete="off">
+                    <button id="addTaskBtn" type="submit" class="btn btn-primary">Add Task</button>
+                </form>
+                <p class="form-feedback" id="taskMessage" role="status" aria-live="polite"></p>
+
+                <ul class="list" id="taskList"></ul>
+                <p class="empty-state" id="taskEmpty" hidden>No tasks yet. Add one above to get started.</p>
+            </section>
+
+            <section class="panel panel-courses" id="courses" aria-labelledby="coursesTitle">
+                <div class="panel-head">
+                    <div>
+                        <h2 id="coursesTitle">My courses</h2>
+                        <p class="muted">Select a department, enter a course code and its unit (1–5).</p>
+                    </div>
+                </div>
+
+                <form id="courseForm" class="add-form course-form" novalidate>
+                    <div class="field course-field">
+                        <label for="courseDepartment">Department</label>
+                        <select id="courseDepartment" class="input-select" required>
+                            <option value="">Select department</option>
+                        </select>
+                    </div>
+                    <div class="field course-field">
+                        <label for="courseCode">Course code</label>
+                        <input id="courseCode" type="text" maxlength="12" placeholder="e.g. GST 111" autocomplete="off" required>
+                    </div>
+                    <div class="field course-field">
+                        <label for="courseUnits">Unit</label>
+                        <input id="courseUnits" type="number" min="1" max="5" step="1" placeholder="1–5" required>
+                    </div>
+                    <button id="addCourseBtn" type="submit" class="btn btn-primary">Add Course</button>
+                </form>
+                <p class="form-feedback" id="courseMessage" role="status" aria-live="polite"></p>
+
+                <ul class="list course-list" id="courseList" aria-label="My courses list"></ul>
+                <p class="empty-state" id="courseEmpty" hidden>No courses yet. Add your first course above.</p>
+            </section>
+
+            <section class="panel panel-assignments" id="assignments" aria-labelledby="assignmentsTitle">
+                <div class="panel-head">
+                    <div>
+                        <h2 id="assignmentsTitle">My assignments</h2>
+                        <p class="muted">Never lose track of a deadline again.</p>
+                    </div>
+                </div>
+
+                <form id="assignmentForm" class="add-form">
+                    <label class="sr-only" for="assignmentInput">New assignment</label>
+                    <input id="assignmentInput" type="text" maxlength="80" placeholder="e.g. Data structures report" autocomplete="off">
+                    <button id="addAssignmentBtn" type="submit" class="btn btn-primary">Add Assignment</button>
+                </form>
+                <p class="form-feedback" id="assignmentMessage" role="status" aria-live="polite"></p>
+
+                <ul class="list" id="assignmentList"></ul>
+                <p class="empty-state" id="assignmentEmpty" hidden>No assignments yet. Add one above.</p>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Student Study Management System</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
